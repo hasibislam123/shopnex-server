@@ -1,4 +1,3 @@
-// index.js
 const express = require('express');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
@@ -33,6 +32,7 @@ async function run() {
     app.get('/', (req, res) => {
       res.send('Shopnex Backend is Running!');
     });
+
     // Add New Product
     app.post('/products', async (req, res) => {
       const product = req.body;
@@ -76,7 +76,9 @@ async function run() {
       try {
         const id = req.params.id;
         const product = await productsCollection.findOne({ _id: new ObjectId(id) });
+
         if (!product) return res.status(404).json({ error: "Product Not Found" });
+
         res.status(200).json(product);
       } catch (err) {
         console.error(err);
@@ -124,6 +126,7 @@ async function run() {
     });
 
     console.log(`Backend running on port ${port}`);
+
   } catch (err) {
     console.error(err);
   }
