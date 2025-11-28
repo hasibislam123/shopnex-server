@@ -31,9 +31,8 @@ async function run() {
 
     // Root
     app.get('/', (req, res) => {
-      res.send('🚀 Shopnex Backend is Running!');
+      res.send('Shopnex Backend is Running!');
     });
-
     // Add New Product
     app.post('/products', async (req, res) => {
       const product = req.body;
